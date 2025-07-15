@@ -36,7 +36,7 @@ const Profile = () => {
   const fetchUserProfile = async () => {
     try {
       const token = localStorage.getItem('token')
-      const response = await axios.get(`${BASE_URL}/api/auth/me`, {
+      const response = await axios.get(`${BASE_URL}/users/profile`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setUser(response.data.user)
@@ -59,7 +59,7 @@ const Profile = () => {
 
     try {
       const token = localStorage.getItem('token')
-      const response = await axios.put(`${BASE_URL}/api/auth/profile`, profileData, {
+      const response = await axios.put(`${BASE_URL}/users/profile`, profileData, {
         headers: { Authorization: `Bearer ${token}` }
       })
       
@@ -91,7 +91,7 @@ const Profile = () => {
 
     try {
       const token = localStorage.getItem('token')
-      await axios.put(`${BASE_URL}/api/auth/password`, {
+      await axios.put(`${BASE_URL}/auth/password`, {
         currentPassword: passwordData.currentPassword,
         newPassword: passwordData.newPassword
       }, {
