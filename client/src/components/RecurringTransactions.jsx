@@ -10,7 +10,7 @@ const RecurringTransactions = () => {
     type: 'expense',
     category: '',
     amount: '',
-    description: '',
+    note: '',
     isRecurring: true,
     recurringInterval: 'monthly',
     nextDueDate: new Date().toISOString().split('T')[0]
@@ -56,7 +56,7 @@ const RecurringTransactions = () => {
         type: 'expense',
         category: '',
         amount: '',
-        description: '',
+        note: '',
         isRecurring: true,
         recurringInterval: 'monthly',
         nextDueDate: new Date().toISOString().split('T')[0]
@@ -125,7 +125,7 @@ const RecurringTransactions = () => {
           <div key={transaction._id} className="card">
             <div className="flex justify-between items-start mb-3">
               <div>
-                <h3 className="font-semibold text-gray-900 dark:text-white">{transaction.description}</h3>
+                <h3 className="font-semibold text-gray-900 dark:text-white">{transaction.note}</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">{transaction.category}</p>
               </div>
               <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
@@ -215,9 +215,9 @@ const RecurringTransactions = () => {
                   <label className="block text-sm font-medium text-gray-700">Description</label>
                   <input
                     type="text"
-                    name="description"
-                    value={formData.description}
-                    onChange={(e) => setFormData({...formData, description: e.target.value})}
+                    name="note"
+                    value={formData.note}
+                    onChange={(e) => setFormData({...formData, note: e.target.value})}
                     className="input-field"
                     placeholder="Enter description"
                     required

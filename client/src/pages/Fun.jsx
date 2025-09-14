@@ -12,7 +12,7 @@ const Fun = () => {
     type: 'expense',
     category: '',
     amount: '',
-    description: '',
+    note: '',
     date: new Date().toISOString().split('T')[0]
   })
 
@@ -52,7 +52,7 @@ const Fun = () => {
         type: 'expense',
         category: '',
         amount: '',
-        description: '',
+        note: '',
         date: new Date().toISOString().split('T')[0]
       })
       setShowAddForm(false)
@@ -182,7 +182,7 @@ const Fun = () => {
                     {new Date(transaction.date).toLocaleDateString()}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
-                    {transaction.description}
+                    {transaction.note}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                     {transaction.category}
@@ -287,9 +287,9 @@ const Fun = () => {
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Description</label>
                   <input
                     type="text"
-                    name="description"
-                    value={formData.description}
-                    onChange={(e) => setFormData({...formData, description: e.target.value})}
+                    name="note"
+                    value={formData.note}
+                    onChange={(e) => setFormData({...formData, note: e.target.value})}
                     className="input-field"
                     placeholder="Enter description"
                     required

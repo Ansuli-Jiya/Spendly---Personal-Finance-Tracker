@@ -18,7 +18,7 @@ const Dashboard = () => {
     type: 'expense',
     category: '',
     amount: '',
-    description: '',
+    note: '',
     date: new Date().toISOString().split('T')[0]
   })
 
@@ -34,7 +34,7 @@ const Dashboard = () => {
   const fetchTransactions = async () => {
     try {
       const token = localStorage.getItem('token')
-      const response = await axios.get(`${BASE_URL}/transactions`, {
+      const response = await axios.get(`${BASE_URL}/api/transactions`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setTransactions(response.data)
@@ -49,14 +49,14 @@ const Dashboard = () => {
     e.preventDefault()
     try {
       const token = localStorage.getItem('token')
-      await axios.post(`${BASE_URL}/transactions`, formData, {
+      await axios.post(`${BASE_URL}/api/transactions`, formData, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setFormData({
         type: 'expense',
         category: '',
         amount: '',
-        description: '',
+        note: '',
         date: new Date().toISOString().split('T')[0]
       })
       setShowAddForm(false)
@@ -69,7 +69,7 @@ const Dashboard = () => {
   const handleDelete = async (id) => {
     try {
       const token = localStorage.getItem('token')
-      await axios.delete(`${BASE_URL}/transactions/${id}`, {
+      await axios.delete(`${BASE_URL}/api/transactions/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       fetchTransactions()
@@ -287,7 +287,7 @@ const Dashboard = () => {
                     {new Date(transaction.date).toLocaleDateString()}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
-                    {transaction.description}
+                    {transaction.note}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                     {transaction.category}
@@ -392,9 +392,9 @@ const Dashboard = () => {
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Description</label>
                   <input
                     type="text"
-                    name="description"
-                    value={formData.description}
-                    onChange={(e) => setFormData({...formData, description: e.target.value})}
+                    name="note"
+                    value={formData.note}
+                    onChange={(e) => setFormData({...formData, note: e.target.value})}
                     className="input-field"
                     placeholder="Enter description"
                     required
