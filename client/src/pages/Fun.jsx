@@ -30,7 +30,7 @@ const Fun = () => {
   const fetchTransactions = async () => {
     try {
       const token = localStorage.getItem('token')
-      const response = await axios.get(`${BASE_URL}/api/transactions`, {
+      const response = await axios.get(`${BASE_URL}/transactions`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setTransactions(response.data)
@@ -45,7 +45,7 @@ const Fun = () => {
     e.preventDefault()
     try {
       const token = localStorage.getItem('token')
-      await axios.post(`${BASE_URL}/api/transactions`, formData, {
+      await axios.post(`${BASE_URL}/transactions`, formData, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setFormData({
@@ -65,7 +65,7 @@ const Fun = () => {
   const handleDelete = async (id) => {
     try {
       const token = localStorage.getItem('token')
-      await axios.delete(`${BASE_URL}/api/transactions/${id}`, {
+      await axios.delete(`${BASE_URL}/transactions/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       fetchTransactions()

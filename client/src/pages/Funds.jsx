@@ -27,7 +27,7 @@ const Funds = () => {
   const fetchInvestments = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`${BASE_URL}/api/investments`, {
+      const response = await axios.get(`${BASE_URL}/investments`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setInvestments(response.data);
@@ -42,7 +42,7 @@ const Funds = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      await axios.post(`${BASE_URL}/api/investments`, formData, {
+      await axios.post(`${BASE_URL}/investments`, formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setFormData({
@@ -66,7 +66,7 @@ const Funds = () => {
     if (!window.confirm('Are you sure you want to delete this investment?')) return;
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`${BASE_URL}/api/investments/${id}`, {
+      await axios.delete(`${BASE_URL}/investments/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchInvestments();

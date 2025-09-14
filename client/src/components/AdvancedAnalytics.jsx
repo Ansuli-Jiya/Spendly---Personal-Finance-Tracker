@@ -21,7 +21,7 @@ const AdvancedAnalytics = () => {
   const fetchTransactions = async () => {
     try {
       const token = localStorage.getItem('token')
-      const response = await axios.get(`${BASE_URL}/api/transactions`, {
+      const response = await axios.get(`${BASE_URL}/transactions`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setTransactions(response.data)

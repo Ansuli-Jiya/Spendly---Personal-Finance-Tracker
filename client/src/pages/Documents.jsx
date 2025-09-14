@@ -18,7 +18,7 @@ const Documents = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get(`${BASE_URL}/api/documents`, {
+      const res = await axios.get(`${BASE_URL}/documents`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setDocuments(res.data);
@@ -38,7 +38,7 @@ const Documents = () => {
     formData.append('description', description);
     try {
       const token = localStorage.getItem('token');
-      await axios.post(`${BASE_URL}/api/documents`, formData, {
+      await axios.post(`${BASE_URL}/documents`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`
@@ -57,7 +57,7 @@ const Documents = () => {
     if (!window.confirm('Delete this document?')) return;
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`${BASE_URL}/api/documents/${id}`, {
+      await axios.delete(`${BASE_URL}/documents/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchDocuments();
